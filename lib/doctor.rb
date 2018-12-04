@@ -15,6 +15,7 @@ attr_reader(:id, :name, :specialty)
   def save
     result = DB.exec("INSERT INTO doctors (name, specialty) VALUES ('#{@name}', '#{@specialty}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
+
   end
 
   def self.all
