@@ -14,7 +14,7 @@ attr_accessor(:specialty_id)
   end
 
   def save
-    result = DB.exec("INSERT INTO doctors (name, specialty_id) VALUES ('#{@name}', '#{@specialty_id}') RETURNING id;")
+    result = DB.exec("INSERT INTO doctors (name, specialty_id) VALUES ('#{@name}', #{@specialty_id}) RETURNING id;")
     @id = result.first().fetch("id").to_i()
 
   end
@@ -45,7 +45,15 @@ attr_accessor(:specialty_id)
   end
 
   def self.sortby_name()
-    "Hello"
+    alpha_doc = DB.exec("SELECT * FROM doctors ORDER BY name;")
+    doctors = []
+    alpha_doc.each do |doctor|
+      name = doctor.fetch("name")
+      specialty_id = doctor.fetch("specialty_id").to_i
+      id = doctor.fetch("id").to_i()
+      doctors.push(Doctor.new({:name => name, :specialty_id => specialty_id, :id => id}))
+    end
+    doctors
   end
 
   def ==(another_doctor)

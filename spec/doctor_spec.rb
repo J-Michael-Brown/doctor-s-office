@@ -33,7 +33,7 @@ describe(Doctor) do
       doc_al.save()
       doc_c = Doctor.new({:name => "Charles Baggins", :specialty_id => 3})
       doc_c.save()
-      expect(Doctor.sortby_name()).to(eq([doc_c, doc_al, doc_bill]))
+      expect(Doctor.sortby_name()).to(eq([doc_al, doc_bill, doc_c]))
 
     end
   end
