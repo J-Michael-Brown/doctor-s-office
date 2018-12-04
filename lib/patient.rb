@@ -39,4 +39,11 @@ attr_reader(:id, :name, :birthday, :doctor_id)
   def ==(another_patient)
     self.name().==(another_patient.name()).&(self.id().==(another_patient.id())).&(self.birthday.==another_patient.birthday).&(self.doctor_id.==another_patient.doctor_id)
   end
+
+  def assign(doctor)
+    doctor_id = DB.exec("UPDATE patients SET doctor_id = #{doctor.id} WHERE id = #{self.id} RETURNING doctor_id;")
+    binding.pry
+    @doctor_id = doctor_id.first().fetch("doctor_id").to_i()
+  end
+
 end
