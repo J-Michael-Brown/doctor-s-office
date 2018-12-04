@@ -50,6 +50,7 @@ post('/add_doctor')do
 end
 
 get('/add_patient')do
+  @doctors = Doctor.sortby_name
   @patient = false
   erb(:add_patient)
 end
@@ -57,12 +58,14 @@ end
 post('/add_patient')do
   birthday = params.fetch("birthday")
   name = params.fetch("patient-name")
+  doctor_id = params.fetch("doctor-id")
   if (name != "")
-    patient = Patient.new(:name => name, :birthday => birthday)
+    patient = Patient.new({:name => name, :birthday => birthday, :doctor_id => doctor_id})
     # binding.pry
     patient.save
   end
   @patient = patient
+  @doctors = Doctor.sortby_name
   erb(:add_patient)
 end
 

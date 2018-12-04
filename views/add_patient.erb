@@ -1,6 +1,16 @@
 <form class="" action="/add_patient" method="post">
   <input type="text" name="patient-name" placeholder="Last Name, First Name">
   <input type="date" name="birthday">
+
+  <div class="form-group">
+    <label for="doctor-id">Doctors</label>
+    <select class="form-control" name="doctor-id">
+      <% @doctors.each do |doctor| %>
+        <option value="<%=doctor.id%>"><%= doctor.name %>: <%= doctor.field %> specialist</option>
+      <%end%>
+    </select>
+  </div>
+
   <button type="submit" name="add-patient">Add a patient</button>
 </form>
 

@@ -7,7 +7,8 @@
   <h3>Doctor's Patients</h3>
   <% @patients.each do |patient| %>
     <dl>
-      <dt><a href="/patient/<%=patient.id%>"><%=patient.name%></a></dt>
+      <dt><%= patient.name %></dt>
+      <dd>Birthdate: <%= patient.birthday%></dd>
       <dd></dd>
     </dl>
   <% end %>
