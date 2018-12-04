@@ -30,4 +30,16 @@ attr_reader(:id, :field)
   def ==(another_specialty)
     self.field().==(another_specialty.field()).&(self.id().==(another_specialty.id()))
   end
+
+  def doctors
+    assigned_doctors = DB.exec("SELECT * FROM doctors WHERE specialty_id = #{self.id};")
+    doctors = []
+    assigned_doctors.each do |doctor|
+      name = doctor.fetch("name")
+      id = doctor.fetch("id").to_i()
+      specialty_id = doctor.fetch("specialty_id").to_i()
+      doctors.push(Doctor.new({:name => name, :specialty_id => specialty_id, :id => id}))
+    end
+    doctors
+  end
 end

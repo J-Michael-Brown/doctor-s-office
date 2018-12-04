@@ -44,6 +44,10 @@ attr_accessor(:specialty_id)
     patients
   end
 
+  def self.sortby_name()
+    "Hello"
+  end
+
   def ==(another_doctor)
     self.name().==(another_doctor.name()).&(self.id().==(another_doctor.id())).&(self.specialty_id.==another_doctor.specialty_id)
   end
