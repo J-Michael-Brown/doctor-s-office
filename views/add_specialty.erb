@@ -1,0 +1,13 @@
+<form action="/add_specialty" method="post">
+  <div class="form-group">
+    <input type="text" name="specialty-field" placeholder="logogy">
+  </div>
+  <button type="submit" name="add-specialty">Add a Specialty option</button>
+</form>
+
+<%if @specialty.class == Specialty %>
+  <p><%= @specialty.field %> has been added to the specialties database</p>
+<% end %>
+
+<a href="/admin">Back</a>
+<a href="/">Home</a>

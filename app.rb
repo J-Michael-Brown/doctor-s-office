@@ -20,20 +20,38 @@ end
 
 get('/admin') do
   @patients = Patient.all
+  @doctors = Doctor.all
   erb(:admin)
 end
 
 get('/doctor/:id') do
+  @doctor = Doctor.by_id(params[:id].to_i)
+  @patients = @doctor.patients
   erb(:doctor)
+end
+
+get('/add_doctor')do
+  @specialties = Specialty.all()
+  @doctor = false
+  erb(:add_doctor)
+end
+
+post('/add_doctor')do
+  name = params.fetch("doctor-name")
+  specialty = params.fetch("specialty-id").to_i
+
+  if (name != "")
+    doctor = Doctor.new(:name => name, :specialty_id => specialty)
+    doctor.save
+  end
+  @doctor = doctor
+  @specialties = Specialty.all()
+  erb(:add_doctor)
 end
 
 get('/add_patient')do
   @patient = false
   erb(:add_patient)
-end
-
-get('/add_doctor')do
-  erb(:add_doctor)
 end
 
 post('/add_patient')do
@@ -48,6 +66,15 @@ post('/add_patient')do
   erb(:add_patient)
 end
 
-post('/add_doctor')do
-  erb(:add_doctor)
+get('/add_specialty') do
+  @specialty = false
+  erb(:add_specialty)
+end
+
+post('/add_specialty') do
+  field = params.fetch("specialty-field")
+  specialty = Specialty.new({:field => field})
+  specialty.save
+  @specialty = specialty
+  erb(:add_specialty)
 end

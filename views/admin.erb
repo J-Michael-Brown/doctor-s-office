@@ -2,10 +2,20 @@
 
 <a href="/add_patient">Add a Patient</a>
 
+<a href="/add_specialty">Add a new Specialty</a>
 <div id="patients">
+  <h3>Patients:</h3>
   <ul>
     <% @patients.each do |patient| %>
       <li><%= patient.name %></li>
+    <% end %>
+  </ul>
+</div>
+<div id="doctors">
+  <h3>Doctors:</h3>
+  <ul>
+    <% @doctors.each do |doctor| %>
+      <a href="/doctor/<%=doctor.id%>"><li><%= doctor.name %></li></a>
     <% end %>
   </ul>
 </div>

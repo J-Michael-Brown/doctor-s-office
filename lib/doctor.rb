@@ -65,6 +65,18 @@ attr_accessor(:specialty_id)
     end
   end
 
+  def self.by_id(id)
+    doctor_as_array = DB.exec("SELECT * FROM doctors WHERE id = #{id};")
+    doctors = []
+    doctor_as_array.each do |doctor|
+      name = doctor.fetch("name")
+      specialty_id = doctor.fetch("specialty_id").to_i
+      id = doctor.fetch("id").to_i()
+      doctors.push(Doctor.new({:name => name, :specialty_id => specialty_id, :id => id}))
+    end
+    doctors[0]
+  end
+
   def ==(another_doctor)
     self.name().==(another_doctor.name()).&(self.id().==(another_doctor.id())).&(self.specialty_id.==another_doctor.specialty_id)
   end

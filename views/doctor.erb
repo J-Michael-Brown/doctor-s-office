@@ -1,9 +1,14 @@
-<h1>Doctor</h1>
+<h1>Doctor </h1>
+<h3><%= @doctor.name %></h3>
 
-<% @patients.each do |patient| %>
-  <dl>
-    <dt><a href="/doctor/<%=patient.id%>"><%=patient.name%></a></dt>
-    <dd></dd>
-  </dl>
+<h3><%= @doctor.field %> specialist</h3>
 
+<% if @patients.length > 0%>
+  <h3>Doctor's Patients</h3>
+  <% @patients.each do |patient| %>
+    <dl>
+      <dt><a href="/patient/<%=patient.id%>"><%=patient.name%></a></dt>
+      <dd></dd>
+    </dl>
+  <% end %>
 <% end %>
