@@ -1,10 +1,11 @@
 class Doctor
 
-attr_reader(:id, :name, :specialty)
+attr_reader(:id, :name)
+attr_accessor(:specialty_id)
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
-    @specialty = attributes.fetch(:specialty)
+    @specialty_id = attributes.fetch(:specialty_id)
     if attributes.keys.include?(:id)
       @id = attributes.fetch(:id)
     else
@@ -13,7 +14,7 @@ attr_reader(:id, :name, :specialty)
   end
 
   def save
-    result = DB.exec("INSERT INTO doctors (name, specialty) VALUES ('#{@name}', '#{@specialty}') RETURNING id;")
+    result = DB.exec("INSERT INTO doctors (name, specialty_id) VALUES ('#{@name}', '#{@specialty_id}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
 
   end
@@ -23,14 +24,27 @@ attr_reader(:id, :name, :specialty)
     doctors = []
     returned_doctors.each do |doctor|
       name = doctor.fetch("name")
-      specialty = doctor.fetch("specialty")
+      specialty_id = doctor.fetch("specialty_id").to_i
       id = doctor.fetch("id").to_i()
-      doctors.push(Doctor.new({:name => name, :specialty => specialty, :id => id}))
+      doctors.push(Doctor.new({:name => name, :specialty_id => specialty_id, :id => id}))
     end
     doctors
   end
 
+  def patients
+    assigned_patients = DB.exec("SELECT * FROM patients WHERE doctor_id = #{self.id};")
+    patients = []
+    assigned_patients.each do |patient|
+      name = patient.fetch("name")
+      birthday = patient.fetch("birthday")
+      id = patient.fetch("id").to_i()
+      doctor_id = patient.fetch("doctor_id").to_i()
+      patients.push(Patient.new({:name => name, :birthday => birthday, :doctor_id => doctor_id, :id => id}))
+    end
+    patients
+  end
+
   def ==(another_doctor)
-    self.name().==(another_doctor.name()).&(self.id().==(another_doctor.id())).&(self.specialty.==another_doctor.specialty)
+    self.name().==(another_doctor.name()).&(self.id().==(another_doctor.id())).&(self.specialty_id.==another_doctor.specialty_id)
   end
 end
