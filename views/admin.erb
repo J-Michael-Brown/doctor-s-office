@@ -1,0 +1,11 @@
+<a href="/add_doctor">Add a Doctor</a>
+
+<a href="/add_patient">Add a Patient</a>
+
+<div id="patients">
+  <ul>
+    <% @patients.each do |patient| %>
+      <li><%= patient.name %></li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,10 @@
+
+
+<a href="/admin">Administator View</a>
+
+<% @doctors.each do |doctor| %>
+  <dl>
+    <a href="/doctor/<%=doctor.id%>"><dt><%=doctor.name%></dt></a>
+    <dd><%=doctor.field%></dd>
+  </dl>
+<% end %>

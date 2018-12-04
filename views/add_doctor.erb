@@ -1,0 +1,14 @@
+<form class="" action="/add_doctor" method="post">
+  <div class="form-group">
+    <input type="text" name="doctor-name" placeholder="Last Name, First Name">
+  </div>
+  <div class="form-group">
+    <label for="specialties">Specialties</label>
+    <select class="form-control" id="specialties">
+      <% @specialties.each do |specialty| %>
+        <option value="<%=specialty.id%>"><%= specialty.field %></option>
+      <%end%>
+    </select>
+  </div>
+  <button type="submit" name="add-doctor">Add a Doctor</button>
+</form>

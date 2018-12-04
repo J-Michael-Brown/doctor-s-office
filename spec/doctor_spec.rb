@@ -37,4 +37,14 @@ describe(Doctor) do
 
     end
   end
+
+  describe(".field") do
+    it "returns the field that the doctor specializes in." do
+      specialty = Specialty.new({:field => "cardiology"})
+      specialty.save()
+      doctor_cardio = Doctor.new({:name => "Dr. Cardio", :specialty_id => specialty.id})
+      doctor_cardio.save()
+      expect(doctor_cardio.field).to(eq("cardiology"))
+    end
+  end
 end

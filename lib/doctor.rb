@@ -1,3 +1,5 @@
+# require('specialty')
+
 class Doctor
 
 attr_reader(:id, :name)
@@ -54,6 +56,13 @@ attr_accessor(:specialty_id)
       doctors.push(Doctor.new({:name => name, :specialty_id => specialty_id, :id => id}))
     end
     doctors
+  end
+
+  def field
+    specialties = DB.exec("SELECT * FROM specialties WHERE id = #{self.specialty_id};")
+    specialties.each do |specialty|
+      return specialty.fetch("field")
+    end
   end
 
   def ==(another_doctor)

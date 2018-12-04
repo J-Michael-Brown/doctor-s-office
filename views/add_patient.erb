@@ -1,0 +1,12 @@
+<form class="" action="/add_patient" method="post">
+  <input type="text" name="patient-name" placeholder="Last Name, First Name">
+  <input type="date" name="birthday">
+  <button type="submit" name="add-patient">Add a patient</button>
+</form>
+
+<%if @patient.class == Patient %>
+  <p><%= @patient.name %> has been added to database</p>
+<% end %>
+
+<a href="/admin">Back</a>
+<a href="/">Home</a>
