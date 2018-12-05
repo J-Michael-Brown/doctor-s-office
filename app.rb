@@ -70,6 +70,7 @@ post('/add_patient')do
 end
 
 get('/add_specialty') do
+  @specialties = Specialty.all
   @specialty = false
   erb(:add_specialty)
 end
@@ -79,5 +80,20 @@ post('/add_specialty') do
   specialty = Specialty.new({:field => field})
   specialty.save
   @specialty = specialty
+  @specialties = Specialty.all
   erb(:add_specialty)
+end
+
+get('/deleter') do
+  @message = ""
+  erb(:deleter)
+end
+
+post('/deleter') do
+  database = params.fetch('database')
+  DB.exec("DELETE FROM  #{database} *;")
+
+  @message = "#{database} has been deleted"
+
+  erb(:deleter)
 end

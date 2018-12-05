@@ -9,5 +9,13 @@
   <p><%= @specialty.field %> has been added to the specialties database</p>
 <% end %>
 
+<% if @specialties.length > 0%>
+<h3>Current Specialties</h3>
+<ul>
+<% @specialties.each do |specialty| %>
+      <li><%= specialty.field %></li>
+<% end %>
+</ul>
+<%end%>
 <a href="/admin">Back</a>
 <a href="/">Home</a>

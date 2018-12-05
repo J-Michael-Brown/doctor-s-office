@@ -1,5 +1,3 @@
-# require('specialty')
-
 class Doctor
 
 attr_reader(:id, :name)

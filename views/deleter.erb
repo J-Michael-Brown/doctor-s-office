@@ -1,0 +1,14 @@
+<form action="/deleter" method="post">
+  <div class="form-group">
+    <label for="database">Enter Name of Database you want cleared</label>
+    <select class="form-control" name="database">
+        <option value="doctors">Doctors</option>
+        <option value="patients">Patients</option>
+        <option value="specialties">Specialties</option>
+    </select>
+  </div>
+  <button type="submit" name="delete-btn">EMPTY</button>
+</form>
+
+<p><%= @message %></p>
+<a href="/">Home</a>
