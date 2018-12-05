@@ -1,10 +1,14 @@
 
 
 <a href="/admin">Administator View</a>
-
-<% @doctors.each do |doctor| %>
-  <dl>
-    <a href="/doctor/<%=doctor.id%>"><dt><%=doctor.name%></dt></a>
-    <dd><%=doctor.field%></dd>
-  </dl>
-<% end %>
+<% if @doctors.length > 0%>
+  <h3>Doctors:</h3>
+  <% @doctors.each do |doctor| %>
+    <dl>
+      <a href="/doctor/<%=doctor.id%>"><dt><%=doctor.name%></dt></a>
+      <dd><%=doctor.field%></dd>
+    </dl>
+  <% end %>
+<%else %>
+  <h3>No Doctors</h3>
+<%end%>

@@ -93,7 +93,7 @@ post('/deleter') do
   database = params.fetch('database')
   DB.exec("DELETE FROM  #{database} *;")
 
-  @message = "#{database} has been deleted"
+  @message = "#{database}"
 
   erb(:deleter)
 end
