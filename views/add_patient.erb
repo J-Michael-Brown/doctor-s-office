@@ -1,6 +1,14 @@
 <form class="" action="/add_patient" method="post">
-  <input type="text" name="patient-name" placeholder="Last Name, First Name">
-  <input type="date" name="birthday">
+  <div class="form-group">
+    <label for="patient-name">Name of Patient</label>
+    <input type="text" class="form-control" name="patient-name" placeholder="Last Name, First Name">
+
+  </div>
+  <div class="form-group">
+  <label for="birthday">Date of Birth</label>
+    <input type="date" class="form-control" name="birthday">
+
+  </div>
 
   <div class="form-group">
     <label for="doctor-id">Doctors</label>
@@ -11,7 +19,7 @@
     </select>
   </div>
 
-  <button type="submit" name="add-patient">Add a patient</button>
+  <button type="submit" name="add-patient" class="btn btn-info">Add a patient</button>
 </form>
 
 <%if @patient.class == Patient %>

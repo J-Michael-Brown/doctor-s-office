@@ -1,8 +1,8 @@
 <form action="/add_specialty" method="post">
   <div class="form-group">
-    <input type="text" name="specialty-field" placeholder="logogy">
+    <input type="text" class="form-control" name="specialty-field" placeholder="logogy">
   </div>
-  <button type="submit" name="add-specialty">Add a Specialty option</button>
+  <button type="submit" name="add-specialty" class="btn btn-info">Add a Specialty option</button>
 </form>
 
 <%if @specialty.class == Specialty %>

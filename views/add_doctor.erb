@@ -1,6 +1,6 @@
 <form class="" action="/add_doctor" method="post">
   <div class="form-group">
-    <input type="text" name="doctor-name" placeholder="Last Name, First Name">
+    <input type="text" class="form-control" name="doctor-name" placeholder="Last Name, First Name">
   </div>
   <div class="form-group">
     <label for="specialties">Specialties</label>
@@ -10,7 +10,7 @@
       <%end%>
     </select>
   </div>
-  <button type="submit" name="add-doctor">Add a Doctor</button>
+  <button type="submit" name="add-doctor" class="btn btn-info">Add a Doctor</button>
 </form>
 <%if @doctor.class == Doctor %>
   <p><%= @doctor.name %> has been added to the doctors database</p>

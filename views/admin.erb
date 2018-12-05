@@ -13,9 +13,10 @@
 </div>
 <div id="doctors">
   <h3>Doctors:</h3>
-  <ul>
+  <dl>
     <% @doctors.each do |doctor| %>
-      <a href="/doctor/<%=doctor.id%>"><li><%= doctor.name %></li></a>
+      <a href="/doctor/<%=doctor.id%>"><dt><%= doctor.name %></dt></a>
+      <dd><%= doctor.patients.length %> patient(s)</dd>
     <% end %>
-  </ul>
+  </dl>
 </div>
